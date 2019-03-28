@@ -16,4 +16,4 @@ COPY ./backup.sh /backups/.
 
 RUN chmod +x /backups/backup.sh
 
-CMD ./backups/backup.sh
+CMD bash -c /backups/backup.sh
