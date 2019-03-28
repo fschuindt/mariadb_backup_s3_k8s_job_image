@@ -1,0 +1,25 @@
+version: '3'
+
+volumes:
+  dbdata:
+    external: false
+
+services:
+  backup:
+    env_file:
+      - docker-compose-backup.env
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - mariadb
+
+  mariadb:
+    env_file:
+      - docker-compose-mariadb.env
+    image: mariadb:10.4
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
